@@ -160,6 +160,7 @@ public class Server
             }
             //after while loop ends, messages all users who left
             MessageAll(name, "has left");
+            LIST.remove(name);
             in.close();
             out.close();
         }
@@ -184,7 +185,7 @@ public class Server
                     PrintWriter aClientOut = new PrintWriter(aClient.getOutputStream(), true);
                     //formats outputted message
                     aClientOut.println(name + "@all: " + msg);
-                //will catch if user not found or io problem
+                    //will catch if user not found or io problem
                 } catch (IOException | NullPointerException ex)
                 {
                     //removes user since there is an io problem or they disconnected
