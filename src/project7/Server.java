@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A server that reads from a client and lets them chat together
@@ -19,7 +19,7 @@ public class Server
 {
 
     //contains all connected clients
-    private static final HashMap LIST = new HashMap();
+    private static final ConcurrentHashMap LIST = new ConcurrentHashMap();
 
     public static void main(String[] args) throws IOException
     {
@@ -96,6 +96,7 @@ public class Server
                     else
                         break;
                 }
+                MessageAll(name, "has connected.");
                 LIST.put(name, this.getClient());
                 out.println("Welcome! Use 'help/' for more info.");
             }
@@ -172,10 +173,10 @@ public class Server
         private void MessageAll(String name, String msg)
         {
             Set allUsers = LIST.keySet();
-            Iterator<Socket> i = allUsers.iterator();
+            Iterator<Object> i = allUsers.iterator();
             while (i.hasNext())
             {
-                Socket temp = null;
+                Object temp = null;
                 try
                 {
                     temp = i.next();
