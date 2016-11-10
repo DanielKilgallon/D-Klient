@@ -24,6 +24,7 @@ public class Server
     public static void main(String[] args) throws IOException
     {
         ServerSocket ss = new ServerSocket(1234);
+        System.out.println("Server has started on port " + ss.getLocalPort());
 
         //continually connects clients and starts a thread for each
         while (true)
@@ -90,6 +91,9 @@ public class Server
                         name = "//";
                         return;
                     }
+                    for (int i = name.length() - 1; i > 0; i--)
+                        if (!Character.isAlphabetic(name.charAt(i)) && !Character.isDigit(name.charAt(i)))
+                            out.println("Incorrect name characters. Only letters and numbers");
                     //checks if name is in correct parameters
                     if (name.length() > 10 || name.length() <= 2)
                         out.println("Incorrect name length (3-10)");
@@ -130,7 +134,8 @@ public class Server
                                     + "   help/ --shows this prompt(obviously)\n"
                                     + "   users/ --shows all currently connected users\n"
                                     + "   <Username>/ --sends message to connected user\n"
-                                    + "   all/ --sends message to all connected users\n";
+                                    + "   all/ --sends message to all connected users\n"
+                                    + "   cowsay/ --sends cow which says message\n";
                             out.println(msg);
                             break;
                         case "users":
@@ -139,6 +144,12 @@ public class Server
                             break;
                         case "all":
                             MessageAll(name, message);
+                            break;
+                        case "cowsay":
+                            MessageAll(name, message + "\n       \\   ,__,                                                            \n"
+                                    + "        \\  (oo)____                                                        \n"
+                                    + "           (__)    )\\                                                      \n"
+                                    + "              ||--|| *                                                      \n");
                             break;
                         //default: tries to send message
                         default:
