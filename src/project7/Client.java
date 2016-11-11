@@ -95,7 +95,7 @@ public class Client extends JFrame
 
     public static void main(String[] args) throws IOException
     {
-        Client client = new Client(new Socket("148.137.224.46", 1234));
+        Client client = new Client(new Socket("csllc.bloomu.edu", 9001));
     }
 
     /**
