@@ -1,14 +1,10 @@
-#Glowing-Triangles
-Uses Java Swing to create a triangle on screen that glows and can be rotated using the mouse wheel.
+#D-Klient
+Uses Java Socket and ServerSocket to create a server and chat client. One instance of the server can have multiple instances of clients running on it, which allows clients to communicate to each other through the server using server provided commands.
 
 ## Usage
 This is a NetBeans IDE 8.1 Project, source files are in the src/ folder
 
 ## History
-TODO: Write history
+
 ## Credits
 Created by Daniel Kilgallon
-
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
